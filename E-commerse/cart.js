@@ -63,15 +63,12 @@ function updatetotal(){
     total = total + (price * quantity);
     total = Math.round(total*100)/100;
     document.getElementsByClassName('total-price')[0].innerText = '$' + total;
+    
   }
 }
 //updatetotal();
 
-var quantityInput = document.getElementsByClassName('cartquantity');
-for(var i=0; quantityInput.length; i++){
-  var input = quantityInput[i];
-  input.addEventListener('change',quantityChanged);
-}
+
 
 function quantityChanged(event){
   var qinput = event.target;
@@ -82,27 +79,25 @@ function quantityChanged(event){
 }
 //************************************************************/
 const cart_items = document.getElementById('cart_content');
-const parentContainer = document.getElementById('productlist');
+const parentContainer = document.getElementById('EcommerceContainer');
 
 parentContainer.addEventListener('click',(e)=>{
   
     if (e.target.className=='shop-item-button'){
-        const id = e.target.parentNode.parentNode.id;
+        const id = e.target.parentNode.id;
         const name = document.querySelector(`#${id} h3`).innerText;
         const img_src = document.querySelector(`#${id} img`).src;
-        const price = e.target.parentNode.innerText;
-        //let total_cart_price = document.querySelector('#total-price').innerText;
+        const price = document.querySelector(`#${id} h4`).innerText;
+        if(!(document.querySelector(`#in-cart-${id}`))){
+          createNotification();
+        }
         if (document.querySelector(`#in-cart-${id}`)){
             alert('This item is already added to the cart');
             return
         }
-       // document.querySelector('.cart-number').innerText = parseInt(document.querySelector('.cart-number').innerText)+1
         const cart_item = document.createElement('div');
         cart_item.classList.add('cartbox');
         cart_item.setAttribute('id',`in-cart-${id}`);
-        //total_cart_price = parseFloat(total_cart_price) + parseFloat(price)
-        //total_cart_price = total_cart_price.toFixed(2)
-        //document.querySelector('#total-price').innerText = `${total_cart_price}`;
         cart_item.innerHTML = `
         <img src="${img_src}" alt="" class="cartimg">
         <div class="detailbox">
@@ -112,18 +107,27 @@ parentContainer.addEventListener('click',(e)=>{
         </div>
         `;
         cart_items.appendChild(cart_item);
-
-        //const container = document.getElementById('container');
-        //const notification = document.createElement('div');
-        //notification.classList.add('notification');
-        //notification.innerHTML = `<h4>Your Product : <span>${name}</span> is added to the cart<h4>`;
-        //container.appendChild(notification);
-        //setTimeout(()=>{
-          //  notification.remove();
-        //},2500)
+     }
+    updatetotal();
+    var quantityInput = document.getElementsByClassName('cartquantity');
+    for(var i=0; quantityInput.length; i++){
+    var input = quantityInput[i];
+    input.addEventListener('change',quantityChanged);
     }
 })
 
+function createNotification(){
+          const container = document.getElementById('toasting');
+          const notify = document.createElement('div');
+          notify.classList.add('toast');
+          notify.innerText = "Product successfully added to the cart" ;
+  
+          container.appendChild(notify);
+
+          setTimeout(() => {
+             notify.remove();
+          }, 3000);
+}
 
 
 
@@ -234,21 +238,6 @@ btn4.addEventListener('click', () => {
 })  
 
 
-function createNotification(){
-  const notify = document.createElement('div');
-  notify.classList.add('toast');
-
-  notify.innerText = "Product successfully added to the cart" ;
-  container1.appendChild(notify);
-  container2.appendChild(notify);
-  container3.appendChild(notify);
-  container4.appendChild(notify);
-  product.appendChild(notify);
-
-  setTimeout(() => {
-    notify.remove();
-  }, 3000);
-}
 
 
 /*const cart_items = document.getElementById("cart-items")
