@@ -10,57 +10,116 @@
 </head>    
 
 <body>
-    <div class="backdrop"></div>
+    <div class="backdrop" id="EcommerceContainer"></div>
     <header class="main-header">
          <button id="side-menu-toggle">Menu</button>
          <nav class="main-header__nav">
             <ul class="main-header__item-list">
-                <li class="main-header__item"> HOME  </li>
-                <li class="main-header__item"> STORE  </li>
-                <li class="main-header__item"> ABOUT  </li>
+                <li class="main-header__item"> <a href='Home.html'>HOME</a></li>
+                <li class="main-header__item"> <a href='design.html'>STORE</a></li>
+                <li class="main-header__item"> <a href='About.html'>ABOUT</a></li>
+                <button id="hamburgerbtn" class="hamburger"> CART</button>
+                    <nav id="nav1" class="hamburger-nav">
+                         <ul class="main-header1_ul">
+                         </ul>
+                        <section id="cart" class="cartcontainer">
+                         <div class="cartdiv">
+                            <div id="cartpage" class="cartpage">
+                                <h2> Cart</h2>
+                                <button id="close1" class="cancel">X</button>
+                            </div>
+                            <!--
+                                <div class="cart-row">
+                                <div class="cart-item">
+                                    <label for='cart-item'>ITEM</label>
+                                </div>
+                                <div class="cart-item">
+                                    <label for='cart-price'>PRICE</label>
+                                </div>
+                                <div class="cart-item">
+                                    <label for='cart-quantity'>QUANTITY</label>
+                                </div>
+                            </div>
+                            -->
+                            <br>
+                                <hr>
+                            
+                            <div id="cart_content" class="cart_content">
+                                
+                                    
+                               
+                            </div>
+                            <div class="bottomoptions">
+                                <div class="cart-total">
+                                    <hr>
+                                        <span class='total-title'> <strong>Total :</strong>
+                                        </span>
+                                        <span id="total-price" class='total-price'>$0</span>
+                                </div>
+                                <hr>
+                                <div class="cartbuttons">
+                                    <button class='purchase-btn1' type='button'>Go To Cart</button>
+                                    <button class='purchase-btn1' type='button'>CheckOut</button>
+                                </div>   
+                                <button class='purchase-btn2' type='button'>Continue Shopping</button>
+                            
+                            </div>
+                            
+                         </div>   
+                        </section>
+                    </nav>
             </ul>
          </nav>
     </header>
     <h1> The Generics</h1>
     <h2> MUSIC </h2>
-    <div class="grid">
-                <div class="row">
+    <div class="toasting" id="toasting">
+    </div>
+    <div class="grid" id="productlist">
+            
+                <div class="row" id="product1">
                     <h3 class="product__title">Album 1</h3>
-                    <img src="https://images.unsplash.com/photo-1659409697914-31acc34bd5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
+                    <img class="product_img" src="https://images.unsplash.com/photo-1659409697914-31acc34bd5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <div class="col">
                         <h4 class="product__price"> $9.99 </h4> 
-                        <button type="submit">Add to Cart</button>
+                        <button type="submit "  id="btn1" class="shop-item-button">Add to Cart</button>
                     </div>
-                   
                 </div>
 
-                <div class="row">
+                <div class="row" id="product2">
                     <h3 class="product__title">Album 2</h3>
-                    <img src="https://images.unsplash.com/photo-1659413348122-37f5b816cb1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
+                    <img class="product_img" src="https://images.unsplash.com/photo-1659413348122-37f5b816cb1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <h4 class="product__price"> $12.99 </h4> 
-                    <button type="submit">Add to Cart</button>
+                    <button type="submit" id="btn2" class="shop-item-button">Add to Cart</button>
                 </div>
 
-                <div class="row">
+                <div class="row" id="product3">
                     <h3 class="product__title">Album 3</h3>
-                    <img src="https://images.unsplash.com/photo-1605140316638-9b828ac2c893?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNtYWxsJTIwc2l6ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
+                    <img class="product_img" src="https://images.unsplash.com/photo-1605140316638-9b828ac2c893?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNtYWxsJTIwc2l6ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <h4 class="product__price"> $15.99 </h4> 
-                    <button type="submit">Add to Cart</button>
+                    <button type="submit" id="btn3" class="shop-item-button">Add to Cart</button>
                 </div>
 
-                <div class="row">
-                    <h3 class="product__title">Album 4</h3>
-                    <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c21hbGwlMjBzaXplfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
-                    <h4 class="product__price"> $20.99 </h4>
-                    <button type="submit">Add to Cart</button>
+                <div class="row" id="product4">
+                    <h3 class="product__title" id="product__title">Album 4</h3>
+                    <img class="product_img" src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c21hbGwlMjBzaXplfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
+                    <h4 class="product__price" id="product__price"> $20.99 </h4>
+                    <button type="submit" id="btn4" class="shop-item-button">Add to Cart</button>
                 </div>
     </div>
+    <h2>New Products</h2>
+    <div id="newproducts" class="newproducts">
+        
+        
+    </div>
     <div class="cart">
-        <button type="submit"> See the Cart </button>
+        <button type="submit" id="gotocart"> Go to Cart </button>
     </div>
     
    
-    <script src=""></script>
+    <script src="cart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+
 </body>
 
     </html>

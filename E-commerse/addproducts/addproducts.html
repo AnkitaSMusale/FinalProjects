@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="addproducts.css">
+   \
+</head>
+
+<body>
+    <main>
+        <form id="product-form" class="product-form"  method="POST">
+            <div id="container" class="container">
+                <h1>Add Product</h1>
+                <div id="msg" class="msg"></div>
+                <div class="form-control">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="form-control">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" name="imageUrl" id="imageUrl">
+                </div>
+                <div class="form-control">
+                    <label for="price">Price</label>
+                    <input type="number" name="price" id="price" step="1">
+                </div>
+                <div class="form-control">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" rows="5"></textarea>
+                </div>
+                <button class="btn" type="submit">Add Product</button>
+            </div>
+            
+        </form>
+    </main>
+    <script src="addproducts.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+</body>
+
+</html>
