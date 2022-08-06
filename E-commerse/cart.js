@@ -1,10 +1,10 @@
 // ********************************************** //
 window.addEventListener('DOMContentLoaded',() => {
-  axios.get("https://crudcrud.com/api/94a4057889c8431b82e6b45be31e1786/AddProduct")
+  axios.get("http://localhost:7000/products")
      .then((data) => {
       //console.log(data);
       if(data.request.status === 200){
-        const products = data.data;
+        const products = data.data.products;
         console.log(products);
         const parentSecton = document.getElementById('newproducts');
         products.forEach(product => {
@@ -12,18 +12,44 @@ window.addEventListener('DOMContentLoaded',() => {
           const productHTML = `
             <div id="newdiv" class="newdiv">
               <h4>${product.title}</h4>
-              <img src=${product.img}></img> 
-              <h4>Deccription : ${product.descr}</h4>
+              <img src=${product.imageUrl}></img> 
+              <h4>Deccription : ${product.description}</h4>
               <h4>Price : $ ${product.price}</h4>
-              <button type="submit "  id="btn1" class="shop-item-button">Add to Cart</button>
-                   
+              <button onClick="addToCart(${product.id})">Add to Cart</button>   
             </div>
               `;
           parentSecton.innerHTML += productHTML;    
         });
       }
-     })
+    })
 })
+
+function addToCart(productId){
+  axios.post("http://localhost:7000/cart", {productId : productId})
+    .then((response) => {
+      if(response.status === 200){
+        console.log(response);
+        notifyuser(response.data.message);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      notifyuser(err.data.message);
+    });
+}
+
+function notifyuser(message){
+  const container = document.getElementById('toasting');
+  const notify = document.createElement('div');
+  notify.classList.add('toast');
+  notify.innerText = message;
+
+  container.appendChild(notify);
+
+  setTimeout(() => {
+     notify.remove();
+  }, 3000);
+}
 // ********************************************** //
 const hamburgerbtn = document.getElementById("hamburgerbtn");
 const hamburgernav = document.getElementById("nav1");
@@ -67,9 +93,6 @@ function updatetotal(){
   }
 }
 //updatetotal();
-
-
-
 function quantityChanged(event){
   var qinput = event.target;
   if(isNaN(qinput.value) || qinput <=0){
@@ -84,6 +107,30 @@ const parentContainer = document.getElementById('EcommerceContainer');
 parentContainer.addEventListener('click',(e)=>{
   
     if (e.target.className=='shop-item-button'){
+
+      axios.get("https://crudcrud.com/api/94a4057889c8431b82e6b45be31e1786/AddProduct")
+      .then((data) => {
+       //console.log(data);
+       if(data.request.status === 200){
+         const products = data.data.products;
+         console.log(products);
+         const parentSecton = document.getElementById('newproducts');
+         products.forEach(product => {
+           
+           const productHTML = `
+             <div id="newdiv" class="newdiv">
+               <h3 class="product__title">${product.title}</h3>
+               <img src=${product.imageUrl}></img> 
+               <h4>Deccription : ${product.description}</h4>
+               <h4 class="product__price"> Price : $ ${product.price} </h4> 
+               <button type="submit" id="btn2" class="shop-item-button">Add to Cart</button>    
+             </div>
+               `;
+           parentSecton.innerHTML += productHTML;    
+         });
+       }
+      })
+
         const id = e.target.parentNode.id;
         const name = document.querySelector(`#${id} h3`).innerText;
         const img_src = document.querySelector(`#${id} img`).src;
