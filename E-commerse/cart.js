@@ -157,7 +157,7 @@ parentContainer.addEventListener('click', (e) => {
         </div>
         `;
     cart_items.appendChild(cart_item);
-  }
+  } 
   updatetotal();
   var quantityInput = document.getElementsByClassName('cartquantity');
   for (var i = 0; quantityInput.length; i++) {
@@ -165,6 +165,7 @@ parentContainer.addEventListener('click', (e) => {
     input.addEventListener('change', quantityChanged);
   }
 })
+
 function quantityChanged(event) {
   var qinput = event.target;
   if (isNaN(qinput.value) || qinput <= 0) {
@@ -187,39 +188,71 @@ function createNotification() {
 }
 
 // *************************Show Cart   ******************************** //
-const cartbutton = document.getElementById('hamburgerbtn');
-cartbutton.addEventListener('click', (e) => {
+window.addEventListener('DOMContentLoaded', () => {
   axios.get("http://localhost:7000/cart")
-    .then((data) => {
-      if (data.request.status === 200) {
-        const products = data.data.products;
-        console.log(products);
-        //console.log(data);
-        const parentSecton = document.getElementById('cart_content');
-        products.forEach(product => {
-          const productHTML = `
-            <div id="cartbox" class="cartbox">
-                <img src="${product.imageUrl}" alt="" class="cartimg">
-                <div class="detailbox">
-                <div class="cart_prod_title">${product.title} </div>
-                <div class="cart_prod_price">$${product.price}</div>
-                <input type="number" value="1" class="cartquantity">
-                </div>     
-            </div>
-              `;
-          parentSecton.innerHTML += productHTML;
-
-        });
-        updatetotal();
-        var quantityInput = document.getElementsByClassName('cartquantity');
-        for (var i = 0; quantityInput.length; i++) {
-          var input = quantityInput[i];
-          input.addEventListener('change', quantityChanged);
-        }
-      }
-    })
-    .catch(err => console.log(err));
+  .then((data) => {
+          if (data.request.status === 200) {
+            const products = data.data.products;
+            console.log(products);
+            //console.log(data);
+            const parentSecton = document.getElementById('cart_content');
+            products.forEach(product => {
+              const productHTML = `
+                <div id="cartbox" class="cartbox">
+                    <img src="${product.imageUrl}" alt="" class="cartimg">
+                    <div class="detailbox">
+                    <div class="cart_prod_title">${product.title} </div>
+                    <div class="cart_prod_price">$${product.price}</div>
+                    <input type="number" value="1" class="cartquantity">
+                    </div>     
+                </div>
+                  `;
+              parentSecton.innerHTML += productHTML;
+    
+            });
+            updatetotal();
+            var quantityInput = document.getElementsByClassName('cartquantity');
+            for (var i = 0; quantityInput.length; i++) {
+              var input = quantityInput[i];
+              input.addEventListener('change', quantityChanged);
+            }
+          }
+        })
+        .catch(err => console.log(err));
 })
+// const cartbutton = document.getElementById('hamburgerbtn');
+// cartbutton.addEventListener('click', (e) => {
+//   axios.get("http://localhost:7000/cart")
+//     .then((data) => {
+//       if (data.request.status === 200) {
+//         const products = data.data.products;
+//         console.log(products);
+//         //console.log(data);
+//         const parentSecton = document.getElementById('cart_content');
+//         products.forEach(product => {
+//           const productHTML = `
+//             <div id="cartbox" class="cartbox">
+//                 <img src="${product.imageUrl}" alt="" class="cartimg">
+//                 <div class="detailbox">
+//                 <div class="cart_prod_title">${product.title} </div>
+//                 <div class="cart_prod_price">$${product.price}</div>
+//                 <input type="number" value="1" class="cartquantity">
+//                 </div>     
+//             </div>
+//               `;
+//           parentSecton.innerHTML += productHTML;
+
+//         });
+//         updatetotal();
+//         var quantityInput = document.getElementsByClassName('cartquantity');
+//         for (var i = 0; quantityInput.length; i++) {
+//           var input = quantityInput[i];
+//           input.addEventListener('change', quantityChanged);
+//         }
+//       }
+//     })
+//     .catch(err => console.log(err));
+// })
 
 
 
@@ -232,7 +265,7 @@ cartbutton.addEventListener('click', (e) => {
 
 // ******************************************************* //
 //var addCart = document.getElementsByClassName('shop-item-button');
-/*var addCart = document.getElementById('btn1');
+/* var addCart = document.getElementById('btn1');
 for(var i=0; quantityInput.length; i++){
   var button = addCart[i];
   button.addEventListener('click',addcartClicked);
@@ -276,7 +309,8 @@ cartShopBox.getElementsByClassName('')
 }
 
 
-const product = document.getElementsByClassName('shop-item-button');*/
+const product = document.getElementsByClassName('shop-item-button');
+*/
 
 
 
@@ -291,7 +325,7 @@ const product = document.getElementsByClassName('shop-item-button');*/
 
 
 
-//******************************************* */
+//******************************************** /
 /*
 const btn1 = document.getElementById("btn1");
 const container1 = document.getElementById("product1");
@@ -332,7 +366,7 @@ btn4.addEventListener('click', () => {
 
 
 
-/*const cart_items = document.getElementById("cart-items")
+const cart_items = document.getElementById("cart-items")
 const parentNode = document.getElementById('productlist');
 function addtocart(){
   const id = document.getElementById('id');
