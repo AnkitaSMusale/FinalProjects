@@ -23,7 +23,7 @@
                          <ul class="main-header1_ul">
                          </ul>
                         <section id="cart" class="cartcontainer">
-                         <div class="cartdiv">
+                         <div class="cartdiv" id="cartdiv">
                             <div id="cartpage" class="cartpage">
                                 <h2> Cart</h2>
                                 <button id="close1" class="cancel">X</button>
@@ -80,7 +80,7 @@
                     <img class="product_img" src="https://images.unsplash.com/photo-1659409697914-31acc34bd5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
                     
                         <h4 class="product__price"> $9.99 </h4> 
-                        <button type="submit "  id="btn1" class="shop-item-button">Add to Cart</button>
+                        <button type="submit " onclick="addToCart()" id="btn1" class="shop-item-button">Add to Cart</button>
                     
                 </div>
 
@@ -88,21 +88,21 @@
                     <h3 class="product__title">Album 2</h3>
                     <img class="product_img" src="https://images.unsplash.com/photo-1659413348122-37f5b816cb1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <h4 class="product__price"> $12.99 </h4> 
-                    <button type="submit" id="btn2" class="shop-item-button">Add to Cart</button>
+                    <button onclick="addToCart()" type="submit" id="btn2" class="shop-item-button">Add to Cart</button>
                 </div>
 
                 <div class="row" id="product3">
                     <h3 class="product__title">Album 3</h3>
                     <img class="product_img" src="https://images.unsplash.com/photo-1605140316638-9b828ac2c893?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNtYWxsJTIwc2l6ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <h4 class="product__price"> $15.99 </h4> 
-                    <button type="submit" id="btn3" class="shop-item-button">Add to Cart</button>
+                    <button onclick="addToCart()" type="submit" id="btn3" class="shop-item-button">Add to Cart</button>
                 </div>
 
                 <div class="row" id="product4">
                     <h3 class="product__title" id="product__title">Album 4</h3>
                     <img class="product_img" src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c21hbGwlMjBzaXplfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Images">
                     <h4 class="product__price" id="product__price"> $20.99 </h4>
-                    <button type="submit" id="btn4" class="shop-item-button">Add to Cart</button>
+                    <button onclick="addToCart(product4)" type="submit" id="btn4" class="shop-item-button">Add to Cart</button>
                 </div>
     </div>
     <h2>New Products</h2>

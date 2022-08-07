@@ -1,14 +1,14 @@
 // ********************************************** //
-window.addEventListener('DOMContentLoaded',() => {
+window.addEventListener('DOMContentLoaded', () => {
   axios.get("http://localhost:7000/products")
-     .then((data) => {
+    .then((data) => {
       //console.log(data);
-      if(data.request.status === 200){
+      if (data.request.status === 200) {
         const products = data.data.products;
         console.log(products);
         const parentSecton = document.getElementById('newproducts');
         products.forEach(product => {
-          
+
           const productHTML = `
             <div id="newdiv" class="newdiv">
               <h4>${product.title}</h4>
@@ -18,19 +18,28 @@ window.addEventListener('DOMContentLoaded',() => {
               <button onClick="addToCart(${product.id})">Add to Cart</button>   
             </div>
               `;
-          parentSecton.innerHTML += productHTML;    
+          parentSecton.innerHTML += productHTML;
         });
       }
     })
 })
 
-function addToCart(productId){
-  axios.post("http://localhost:7000/cart", {productId : productId})
+function addToCart(productId) {
+  axios.post("http://localhost:7000/cart", { productId: productId })
     .then((response) => {
-      if(response.status === 200){
-        console.log(response);
+      // if (response.status === 200) {
+      //   console.log(response);
+
+      //   notifyuser(response.data.message);
+      // }
+       if (!(document.querySelectorAll(`#in-cart-${productId}`))) {
         notifyuser(response.data.message);
-      }
+       }
+       else{
+        alert('This item is already added to the cart');
+         return;
+        
+       }
     })
     .catch((err) => {
       console.log(err);
@@ -38,7 +47,7 @@ function addToCart(productId){
     });
 }
 
-function notifyuser(message){
+function notifyuser(message) {
   const container = document.getElementById('toasting');
   const notify = document.createElement('div');
   notify.classList.add('toast');
@@ -47,7 +56,7 @@ function notifyuser(message){
   container.appendChild(notify);
 
   setTimeout(() => {
-     notify.remove();
+    notify.remove();
   }, 3000);
 }
 // ********************************************** //
@@ -65,59 +74,53 @@ hamburgerbtn.addEventListener("click", () => {
 const cart = document.querySelector(".hamburger-nav ")
 const close = document.getElementById("close1");
 
-close.addEventListener('click' , () => {
+close.addEventListener('click', () => {
   cart.classList.toggle("active");
 })
 
 const gotocart = document.getElementById("gotocart");
 
-gotocart.addEventListener('click' , () => {
+gotocart.addEventListener('click', () => {
   cart.classList.toggle("active");
 })
 /*******************************************/
 
-function updatetotal(){
+function updatetotal() {
   var cart_content = document.getElementsByClassName('cart_content')[0];
   var cartBoxes = cart_content.getElementsByClassName("cartbox");
-  var total=0;
-  for(var i=0; cartBoxes.length; i++){
+  var total = 0;
+  for (var i = 0; i < cartBoxes.length; i++) {
     var cartBox = cartBoxes[i];
     var priceElement = cartBox.getElementsByClassName('cart_prod_price')[0];
     var quantityElement = cartBox.getElementsByClassName('cartquantity')[0];
-    var price = parseFloat(priceElement.innerText.replace('$',""));
+    var price = parseFloat(priceElement.innerText.replace('$', ""));
     var quantity = quantityElement.value;
     total = total + (price * quantity);
-    total = Math.round(total*100)/100;
+    total = Math.round(total * 100) / 100;
     document.getElementsByClassName('total-price')[0].innerText = '$' + total;
-    
+
   }
 }
 //updatetotal();
-function quantityChanged(event){
-  var qinput = event.target;
-  if(isNaN(qinput.value) || qinput <=0){
-    qinput.value=1;
-  }
-  updatetotal();
-}
-//************************************************************/
+
+//**********************Adding New Product**************************************/
 const cart_items = document.getElementById('cart_content');
 const parentContainer = document.getElementById('EcommerceContainer');
 
-parentContainer.addEventListener('click',(e)=>{
-  
-    if (e.target.className=='shop-item-button'){
+parentContainer.addEventListener('click', (e) => {
 
-      axios.get("https://crudcrud.com/api/94a4057889c8431b82e6b45be31e1786/AddProduct")
+  if (e.target.className == 'shop-item-button') {
+
+    axios.get("http://localhost:7000/product")
       .then((data) => {
-       //console.log(data);
-       if(data.request.status === 200){
-         const products = data.data.products;
-         console.log(products);
-         const parentSecton = document.getElementById('newproducts');
-         products.forEach(product => {
-           
-           const productHTML = `
+        //console.log(data);
+        if (data.request.status === 200) {
+          const products = data.data.products;
+          console.log(products);
+          const parentSecton = document.getElementById('newproducts');
+          products.forEach(product => {
+
+            const productHTML = `
              <div id="newdiv" class="newdiv">
                <h3 class="product__title">${product.title}</h3>
                <img src=${product.imageUrl}></img> 
@@ -126,26 +129,26 @@ parentContainer.addEventListener('click',(e)=>{
                <button type="submit" id="btn2" class="shop-item-button">Add to Cart</button>    
              </div>
                `;
-           parentSecton.innerHTML += productHTML;    
-         });
-       }
+            parentSecton.innerHTML += productHTML;
+          });
+        }
       })
 
-        const id = e.target.parentNode.id;
-        const name = document.querySelector(`#${id} h3`).innerText;
-        const img_src = document.querySelector(`#${id} img`).src;
-        const price = document.querySelector(`#${id} h4`).innerText;
-        if(!(document.querySelector(`#in-cart-${id}`))){
-          createNotification();
-        }
-        if (document.querySelector(`#in-cart-${id}`)){
-            alert('This item is already added to the cart');
-            return
-        }
-        const cart_item = document.createElement('div');
-        cart_item.classList.add('cartbox');
-        cart_item.setAttribute('id',`in-cart-${id}`);
-        cart_item.innerHTML = `
+    const id = e.target.parentNode.id;
+    const name = document.querySelector(`#${id} h3`).innerText;
+    const img_src = document.querySelector(`#${id} img`).src;
+    const price = document.querySelector(`#${id} h4`).innerText;
+    if (!(document.querySelector(`#in-cart-${id}`))) {
+      createNotification();
+    }
+    if (document.querySelector(`#in-cart-${id}`)) {
+      alert('This item is already added to the cart');
+      return
+    }
+    const cart_item = document.createElement('div');
+    cart_item.classList.add('cartbox');
+    cart_item.setAttribute('id', `in-cart-${id}`);
+    cart_item.innerHTML = `
         <img src="${img_src}" alt="" class="cartimg">
         <div class="detailbox">
         <div class="cart_prod_title">${name} </div>
@@ -153,28 +156,70 @@ parentContainer.addEventListener('click',(e)=>{
         <input type="number" value="1" class="cartquantity">
         </div>
         `;
-        cart_items.appendChild(cart_item);
-     }
-    updatetotal();
-    var quantityInput = document.getElementsByClassName('cartquantity');
-    for(var i=0; quantityInput.length; i++){
+    cart_items.appendChild(cart_item);
+  }
+  updatetotal();
+  var quantityInput = document.getElementsByClassName('cartquantity');
+  for (var i = 0; quantityInput.length; i++) {
     var input = quantityInput[i];
-    input.addEventListener('change',quantityChanged);
-    }
+    input.addEventListener('change', quantityChanged);
+  }
 })
-
-function createNotification(){
-          const container = document.getElementById('toasting');
-          const notify = document.createElement('div');
-          notify.classList.add('toast');
-          notify.innerText = "Product successfully added to the cart" ;
-  
-          container.appendChild(notify);
-
-          setTimeout(() => {
-             notify.remove();
-          }, 3000);
+function quantityChanged(event) {
+  var qinput = event.target;
+  if (isNaN(qinput.value) || qinput <= 0) {
+    qinput.value = 1;
+  }
+  updatetotal();
 }
+
+function createNotification() {
+  const container = document.getElementById('toasting');
+  const notify = document.createElement('div');
+  notify.classList.add('toast');
+  notify.innerText = "Product successfully added to the cart";
+
+  container.appendChild(notify);
+
+  setTimeout(() => {
+    notify.remove();
+  }, 3000);
+}
+
+// *************************Show Cart   ******************************** //
+const cartbutton = document.getElementById('hamburgerbtn');
+cartbutton.addEventListener('click', (e) => {
+  axios.get("http://localhost:7000/cart")
+    .then((data) => {
+      if (data.request.status === 200) {
+        const products = data.data.products;
+        console.log(products);
+        //console.log(data);
+        const parentSecton = document.getElementById('cart_content');
+        products.forEach(product => {
+          const productHTML = `
+            <div id="cartbox" class="cartbox">
+                <img src="${product.imageUrl}" alt="" class="cartimg">
+                <div class="detailbox">
+                <div class="cart_prod_title">${product.title} </div>
+                <div class="cart_prod_price">$${product.price}</div>
+                <input type="number" value="1" class="cartquantity">
+                </div>     
+            </div>
+              `;
+          parentSecton.innerHTML += productHTML;
+
+        });
+        updatetotal();
+        var quantityInput = document.getElementsByClassName('cartquantity');
+        for (var i = 0; quantityInput.length; i++) {
+          var input = quantityInput[i];
+          input.addEventListener('change', quantityChanged);
+        }
+      }
+    })
+    .catch(err => console.log(err));
+})
 
 
 
