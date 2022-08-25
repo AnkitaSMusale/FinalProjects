@@ -17,6 +17,7 @@
             <ul class="main-header__item-list">
                 <li class="main-header__item"> <a href='Home.html'>HOME</a></li>
                 <li class="main-header__item"> <a href='design.html'>STORE</a></li>
+                <li class="main-header__item"> <a href='order.html'>ORDER</a></li>
                 <li class="main-header__item"> <a href='About.html'>ABOUT</a></li>
                 <button id="hamburgerbtn" class="hamburger"> CART</button>
                     <nav id="nav1" class="hamburger-nav">
@@ -51,14 +52,14 @@
                                     <hr>
                                         <span class='total-title'> <strong>Total :</strong>
                                         </span>
-                                        <span id="total-price" class='total-price'>$0</span>
+                                        <span id="total-price" class='total-price'>0</span>
                                 </div>
                                 <hr>
-                                <div class="cartbuttons">
-                                    <button class='purchase-btn1' type='button'>Go To Cart</button>
+                                <!--<div class="cartbuttons">
+                                    <button class='purchase-btn1' type='button'>Continue Shopping</button>
                                     <button class='purchase-btn1' type='button'>CheckOut</button>
-                                </div>   
-                                <button class='purchase-btn2' type='button'>Continue Shopping</button>
+                                </div>  --> 
+                                <button class='purchase-btn2' id="purchase-btn2" type='button'>Order Now</button>
                             
                             </div>
                             
@@ -105,12 +106,21 @@
                     <button onclick="addToCart(product4)" type="submit" id="btn4" class="shop-item-button">Add to Cart</button>
                 </div>
     </div>
+
+    
     <h2>New Products</h2>
 
     <div id="newproducts" class="newproducts">
         
-        
     </div>
+
+    <!--<section class="pagination">
+        <button class="paging"><a href="/?page=1">1</a></button>
+            <button class="paging"><a href="/?page=2">2</a></button>
+            <button class="paging">1</button>
+            <button class="paging">2</button>
+        </section>-->  
+
     <div class="cart">
         <button type="submit" id="gotocart"> Go to Cart </button>
     </div>

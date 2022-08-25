@@ -98,6 +98,7 @@ button{
     cursor: pointer;
 
   }
+  
   .purchase-btn2{
     font-size: large;
     display: block;
@@ -110,10 +111,13 @@ button{
     cursor: pointer;
   }
   .newdiv{
-   padding: 1px;
+   padding-right: 80px;
+   padding-right: 80px;
     margin-top: 15px;
     margin-bottom: 15px;
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display : absolute;
   }
   .newdiv h4 {
     display: relative;
@@ -124,19 +128,21 @@ button{
   
   .newdiv img{
     padding: 0%;
-    width: 290px;
-    height: 150px; 
+    width: 390px;
+    height: 270px; 
     margin: 1px;
   }
   .newdiv title{
     color: black;
   }
   .newproducts{
+    margin-top: 0px;
     color: black;
     display: flex;
-    margin-right: 0px;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 7rem;
+    padding-right: 100px;
   }
   .cartbuttons{
     display: flex;
@@ -238,7 +244,7 @@ button{
 
 .main-header__item-list {
   list-style: none;
-  margin: 440px;
+  margin: 410px;
   padding: 1rem;
   display: flex;
 }
@@ -316,7 +322,27 @@ button{
     margin-bottom: 15px;
 }
 
+.pagination{
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+}
+.paging{
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 0.5rem;
+  margin: 0 1rem;
+}
 
+.removebtn{
+  margin-right: 40px;
+  background-color: white;
+  color: red;
+  padding: 0px;
+  width: 35px;
+  border-color: red;
+}
 
 @media (min-width: 768px) {
   .main-header__nav {
